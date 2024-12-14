@@ -67,7 +67,7 @@ jobs:
   independent-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Independent Step
+      - name: In the supermarket
         run: |
-          echo "This job is independent of others."
+          echo "Searching for apples..."
 
