@@ -62,7 +62,7 @@ jobs:
           else
             echo "Test failed."
             exit 1
-          fia
+          fi
 
   independent-job:
     runs-on: ubuntu-latest
