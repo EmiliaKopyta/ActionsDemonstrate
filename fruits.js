@@ -5,5 +5,6 @@ if (Math.random() > 0.5) basket.push('Apple'); //50% szans na jabłko
 console.log('Basket:', basket);
 
 // Export basket to use in the test
+var basketString = JSON.stringify(basket);
 const fs = require('fs');
-fs.writeFileSync('basket.json', JSON.stringify(basket, null, 2));
+fs.writeFileSync("basket.json", basketString);
