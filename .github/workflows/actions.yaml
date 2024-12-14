@@ -41,8 +41,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Verify working directory
-        run: pwd
       - name: List files before test
         run: ls -R
       - name: Verify basket.json in test-job
@@ -54,7 +52,8 @@ jobs:
             echo "basket.json not found in test-job!"
             exit 1
             fi
-
+      - name: Verify basket.json after commit
+        run: cat basket.json
       - name: Run Fruit Test
         run: |
           node $GITHUB_WORKSPACE/test-fruits.js
