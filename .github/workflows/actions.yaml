@@ -15,6 +15,14 @@ jobs:
       - name: Setup environment
         run: |
           node fruits.js
+      - name: Check if basket.json exists
+        run: |
+          if [ -f basket.json ]; then
+            echo "basket.json generated successfully."
+          else
+            echo "basket.json not found. Something went wrong!"
+            exit 1
+          fi
 
   test-job:
     runs-on: ubuntu-latest
