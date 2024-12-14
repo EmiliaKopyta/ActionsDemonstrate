@@ -45,6 +45,16 @@ jobs:
         run: pwd
       - name: List files before test
         run: ls -R
+      - name: Verify basket.json in test-job
+        run: |
+            if [ -f basket.json ]; then
+            echo "basket.json found in test-job:"
+            cat basket.json
+            else
+            echo "basket.json not found in test-job!"
+            exit 1
+            fi
+
       - name: Run Fruit Test
         run: |
           node $GITHUB_WORKSPACE/test-fruits.js
