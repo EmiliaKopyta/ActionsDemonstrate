@@ -25,6 +25,15 @@ jobs:
             echo "basket.json not found. Something went wrong!"
             exit 1
           fi
+      - name: Commit and push basket.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add basket.json
+          git diff-index --quiet HEAD || git commit -m "Generated basket.json"
+          git push origin main
 
   test-job:
     runs-on: ubuntu-latest
