@@ -14,8 +14,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Verify repository files
         run: ls -R
-      - name: Single line script
-        run: echo "Hello, World!"; echo "This is a single-line script.
       - name: Setup environment
         run: |
           node fruits.js
