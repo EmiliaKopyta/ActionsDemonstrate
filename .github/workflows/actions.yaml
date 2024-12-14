@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Verify repository files
+        run: ls -R
       - name: Setup environment
         run: |
           node fruits.js
@@ -28,6 +30,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup
     steps:
+      - name: List files before test
+        run: ls -R
       - name: Run Fruit Test
         run: |
           node test-fruits.js
