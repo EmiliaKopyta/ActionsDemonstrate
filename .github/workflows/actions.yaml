@@ -64,10 +64,39 @@ jobs:
             exit 1
           fi
 
+  success-dependent-job:
+    runs-on: ubuntu-latest
+    needs: test-job
+    if: success()
+    steps:
+      - name: Success message
+        run: echo "The test-job succeeded! Proceeding with dependent tasks."
+
+  failure-dependent-job:
+    runs-on: ubuntu-latest
+    needs: test-job
+    if: failure()
+    steps:
+      - name: Failure message
+        run: echo "The test-job failed! Running failure-dependent-job."
+
+  always-dependent-job:
+    runs-on: ubuntu-latest
+    needs: test-job
+    if: always()
+    steps:
+      - name: Always running step
+        run: |
+          echo "This job runs regardless of test-job's status."
+          if [ ${{ needs.test-job.result }} == 'failure' ]; then
+            echo "test-job failed, but I am still running!"
+          else
+            echo "test-job succeeded, and I am running as well!"
+          fi
+      
   independent-job:
     runs-on: ubuntu-latest
     steps:
       - name: In the supermarket
         run: |
           echo "Searching for apples..."
-
